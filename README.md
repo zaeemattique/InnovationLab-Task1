@@ -1,63 +1,28 @@
-WordPress Deployment on AWS using Terraform
-📋 Project Overview
+# WordPress Deployment on AWS using Terraform
+
+## Project Overview
 This project automates the deployment of a WordPress website on AWS infrastructure using Terraform. The setup provisions an EC2 instance with Apache, PHP, and MySQL installed via a user data script, configured with a custom VPC, subnets, and security groups.
 
-🏗️ Architecture
+## Architecture
 The infrastructure includes:
 
-VPC with CIDR: 10.0.0.0/16
+VPC with CIDR: **10.0.0.0/16**
 
 Public Subnets in two availability zones:
 
-Subnet A: 10.0.1.0/24 (us-west-2a)
+Subnet A: **10.0.1.0/24 (us-west-2a)**
 
-Subnet B: 10.0.2.0/24 (us-west-2b)
+Subnet B: **10.0.2.0/24 (us-west-2b)**
 
 Internet Gateway for public internet access
 
 Route Tables with internet routing
 
-Security Groups allowing HTTP (80), SSH (22), and MySQL (3306) access
+Security Groups allowing **HTTP (80), SSH (22), and MySQL (3306)** access
 
 EC2 Instances running Amazon Linux 2023 with WordPress and MySQL
 
-📁 Project Structure
-text
-Task1/
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── provider.tf
-├── terraform.tf
-├── terraform.tfstate
-├── terraform.tfstate.backup
-└── modules/
-    ├── vpc/
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── variables.tf
-    ├── subnets/
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── variables.tf
-    ├── security_groups/
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── variables.tf
-    ├── route_table/
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── variables.tf
-    ├── igw/
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── variables.tf
-    └── ec2/
-        ├── main.tf
-        ├── outputs.tf
-        ├── userdata.sh
-        └── variables.tf
-⚙️ Prerequisites
+## Prerequisites
 Software Requirements
 Terraform v1.13.5 or later
 
@@ -72,7 +37,7 @@ Access Key ID and Secret Access Key
 
 Default region: us-west-2
 
-🚀 Installation & Setup
+## Installation & Setup
 1. Install Terraform
 Download Terraform from HashiCorp Developer
 
@@ -95,26 +60,29 @@ bash
 aws configure
 Enter your AWS Access Key ID, Secret Access Key, and set region to us-west-2
 
-🛠️ Deployment
-Initialize Terraform
-bash
+## Deployment
+Initialize Terraform:
+```
 terraform init
-Plan Infrastructure
-bash
+```
+Plan Infrastructure:
+```
 terraform plan
+```
 Apply Configuration
-bash
+```
 terraform apply
-📊 Infrastructure Components
+```
+## Infrastructure Components
+
 VPC Configuration
 CIDR Block: 10.0.0.0/16
 
 Resource: aws_vpc.Task1_VPC_Zaeem
 
 Subnets
-Subnet A: 10.0.1.0/24 in us-west-2a
-
-Subnet B: 10.0.2.0/24 in us-west-2b
+Subnet A: 10.0.1.0/24 in **us-west-2a**
+Subnet B: 10.0.2.0/24 in **us-west-2b**
 
 Internet Gateway
 Attached to VPC for internet access
@@ -144,7 +112,7 @@ Public IP: Enabled
 
 User Data: Automated WordPress and MySQL installation
 
-🔧 User Data Script
+## User Data Script
 The userdata.sh script automates:
 
 System updates and Apache installation
@@ -159,10 +127,10 @@ Database user creation and permissions
 
 File permissions and service startup
 
-🔐 State Management
+## State Management
 Terraform state is stored in AWS S3 with DynamoDB for state locking:
 
-hcl
+```
 terraform {
   backend "s3" {
     bucket = "task1-zaeem-tfstate"
@@ -171,7 +139,9 @@ terraform {
     dynamodb_table = "task1-zaeem-tfstate-lock"
   }
 }
-🧪 Testing
+```
+
+## Testing
 Access WordPress
 After deployment, Terraform will output the public IP
 
@@ -181,15 +151,15 @@ Complete WordPress setup wizard
 
 Verify Services
 Connect via SSH and check services:
-
-bash
+```
 systemctl status httpd
 systemctl status mariadb
-🧹 Cleanup
+```
+## Cleanup
 To destroy all created resources:
-
-bash
+```
 terraform destroy
-👨‍💻 Author
+```
+## Author
 Zaeem Attique Ashar
 Cloud Intern - Cloudelligent
