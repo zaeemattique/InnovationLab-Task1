@@ -4,7 +4,7 @@
 This project automates the deployment of a WordPress website on AWS infrastructure using Terraform. The setup provisions an EC2 instance with Apache, PHP, and MySQL installed via a user data script, configured with a custom VPC, subnets, and security groups.
 
 ## Architecture
-![Architecture Diagram](https://raw.githubusercontent.com/zaeemattique/InnovationLab-Task1/refs/heads/main/architecture-diagram.jpg](https://raw.githubusercontent.com/zaeemattique/InnovationLab-Task1/refs/heads/main/architecture-diagram.jpg)
+![alt text](https://raw.githubusercontent.com/zaeemattique/InnovationLab-Task1/refs/heads/main/architecture-diagram.jpg)
 
 The infrastructure includes:
 
